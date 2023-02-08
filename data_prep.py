@@ -1,6 +1,7 @@
 import re
 import pandas as pd
 import numpy as np
+from sklearn import preprocessing
 
 
 def read_csv_file_to_dataframe(file_name):
@@ -78,10 +79,17 @@ def make_numeric_categories(x):
         return 2
 
 
+def normalize_data(df):
+    d = preprocessing.normalize(df)
+    scaled_df = pd.DataFrame(d)
+    scaled_df.head()
+
+
 def make_training_data(data_input):
     train_set = data_input.tail(len(data_input) - 50)
     train_names = train_set['Food']
-    train_predictors = train_set[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].to_numpy()
+    #train_predictors = train_set[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].to_numpy()
+    train_predictors = preprocessing.normalize(train_set[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].to_numpy())
     train_outcome = np.asarray([int(x) for x in train_set['Category'].to_numpy()])
     return train_predictors, train_outcome
 
@@ -89,7 +97,8 @@ def make_training_data(data_input):
 def make_test_data(data_input):
     test_set = data_input.head(50)
     test_names = test_set['Food']
-    test_predictors = test_set[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].to_numpy()
+    #test_predictors = test_set[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].to_numpy()
+    test_predictors = preprocessing.normalize(test_set[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].to_numpy())
     test_outcome = np.asarray([int(x) for x in test_set['Category'].to_numpy()])
     return test_names, test_predictors, test_outcome
 
