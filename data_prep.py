@@ -2,6 +2,7 @@ import re
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 
 
 def read_csv_file_to_dataframe(file_name):
