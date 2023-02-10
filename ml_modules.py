@@ -1,6 +1,8 @@
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
+from sklearn import svm
+
 from sklearn.metrics import accuracy_score
 
 import data_output
@@ -13,7 +15,6 @@ def predict_with_knn(train_predictors, train_outcome, test_predictors, test_outc
 
     data_output.print_prediction_vs_reality(test_names, test_outcome, y_pred_5)
     print("Accuracy knn with k=5", accuracy_score(test_outcome, y_pred_5))
-    print()
 
 
 def predict_with_naive_bayes(train_predictors, train_outcome, test_predictors, test_outcome, test_names):
@@ -26,7 +27,6 @@ def predict_with_naive_bayes(train_predictors, train_outcome, test_predictors, t
 
     data_output.print_prediction_vs_reality(test_names, test_outcome, y_pred_nbc)
     print("Accuracy naive bayes", accuracy_score(test_outcome, y_pred_nbc))
-    print()
 
 
 def predict_with_random_forest(X_train, y_train, X_test, y_test):
@@ -37,3 +37,14 @@ def predict_with_random_forest(X_train, y_train, X_test, y_test):
     y_pred = clf.predict(X_test)
     # Model Accuracy, how often is the classifier correct?
     print("Accuracy random forest", accuracy_score(y_test, y_pred))
+
+
+def predict_with_svm(X_train, y_train, X_test, y_test):
+    # Create a svm Classifier
+    clf = svm.SVC(kernel='linear')  # Linear Kernel
+    # Train the model using the training sets
+    clf.fit(X_train, y_train)
+    # Predict the response for test dataset
+    y_pred = clf.predict(X_test)
+    # Model Accuracy: how often is the classifier correct?
+    print("Accuracy svm:", accuracy_score(y_test, y_pred))

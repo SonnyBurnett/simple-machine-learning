@@ -12,6 +12,7 @@ def main():
     ml_modules.predict_with_knn(train_predictors, train_outcome, test_predictors, test_outcome, test_names)
     ml_modules.predict_with_naive_bayes(train_predictors, train_outcome, test_predictors, test_outcome, test_names)
     ml_modules.predict_with_random_forest(train_predictors, train_outcome, test_predictors, test_outcome)
+    ml_modules.predict_with_svm(train_predictors, train_outcome, test_predictors, test_outcome)
 
 
 if __name__ == '__main__':
