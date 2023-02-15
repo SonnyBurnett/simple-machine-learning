@@ -35,8 +35,7 @@ def fix_deviations(x):
                 return format_float_number(x)
             elif strange == '-':
                 index = x.find('-')
-                print("special case", float(x[index:]))
-                return x
+                return float(x[index:])
             elif strange == '.':
                 return float(x)
             else:
