@@ -11,11 +11,11 @@ import data_output
 
 
 def predict_with_knn(train_predictors, train_outcome, test_predictors, test_outcome, test_names):
-    knn5 = KNeighborsClassifier(n_neighbors=10)
+    knn5 = KNeighborsClassifier(n_neighbors=1)
     knn5.fit(train_predictors, train_outcome)
     y_pred_5 = knn5.predict(test_predictors)
 
-    data_output.print_prediction_vs_reality(test_names, test_outcome, y_pred_5)
+    #data_output.print_prediction_vs_reality(test_names, test_outcome, y_pred_5)
     print("Accuracy knn with k=5", accuracy_score(test_outcome, y_pred_5))
 
 
@@ -27,7 +27,7 @@ def predict_with_naive_bayes(train_predictors, train_outcome, test_predictors, t
     # Predict the response for test dataset
     y_pred_nbc = gnb.predict(test_predictors)
 
-    data_output.print_prediction_vs_reality(test_names, test_outcome, y_pred_nbc)
+    #data_output.print_prediction_vs_reality(test_names, test_outcome, y_pred_nbc)
     print("Accuracy naive bayes", accuracy_score(test_outcome, y_pred_nbc))
 
 

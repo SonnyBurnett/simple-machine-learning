@@ -6,12 +6,14 @@ from sklearn.linear_model import LinearRegression
 import data_prep
 
 df = data_prep.read_and_prepare_data()
+
+print(df[['Calories', 'Protein', 'Fat', 'Sat.Fat', 'Fiber', 'Carbs']].head(20))
+
 df_binary = df[['Calories', 'Fat']]
 
-print(df_binary.head())
 
-X = np.array(df_binary['Calories']).reshape(-1, 1)
-y = np.array(df_binary['Fat']).reshape(-1, 1)
+X = np.array(df_binary['Fat']).reshape(-1,1)
+y = np.array(df_binary['Calories']).reshape(-1,1)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
 
